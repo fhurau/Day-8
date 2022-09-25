@@ -137,3 +137,7 @@ div.para{
 div.para p{
     margin-top: 10px;
 }
+
+.duration{
+    width: 50%;
+}

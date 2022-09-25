@@ -76,8 +76,12 @@
                           </a>
                           <p>Durasi : {{$data.Duration}}</p>
                           <p class="card-text">{{$data.Description}}</p>
-                          <i class="fa-brands fa-google-play fa-xl"></i>
-                          <i class="fa-brands fa-java fa-xl"></i>
+                           <div class="mb-3 fs-5">
+                            <i class="fa-brands fa-{{$data.TypeScript}} fa-xl me-3"></i>
+                            <i class="fa-brands fa-{{$data.NodeJs}} fa-xl me-3"></i>
+                            <i class="fa-brands fa-{{$data.VueJs}} fa-xl me-3"></i>
+                            <i class="fa-brands fa-{{$data.ReactJs}} fa-xl"></i>
+                          </div>
                           <div class="d-flex mt-2">
                             <a href="#"type="button" class="btn btn-dark w-50 mx-1">Edit</a>
                             <a href="/deleteMP/{{$index}}" type="button" class="btn btn-dark w-50 mx-1">Delete</a>

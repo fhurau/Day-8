@@ -48,34 +48,32 @@
                         <p>Duration<p>
                         <div class="date">
                             <i class="fa-solid fa-calendar-days"></i>
-                            <span>11-Jan 2021 - 12-Feb-2021</span>
+                            <span>{{.MP.StartDate}} - {{.MP.EndDate}}</span>
                         </div>
                         
                         <div class="range">
                             <i class="fa-regular fa-clock"></i>
-                            <span> 1 Month</span>
+                            <span> {{.MP.Duration}}</span>
                         </div>
                         
                     </div>
                     <div class="technologies">
                         <p>Technologies</p>
 
-                        <div class="atas">
-                            <i class="fa-brands fa-react"></i>
-                            <span>React JS</span>
-
-                            <i class="fa-brands fa-js"></i>
-                            <span>Java Script</span>
-
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="fa-brands fa-{{.MP.NodeJs}} mb-3" style="width: 25px;"></i>
+                                <span class="text-capitalize">{{.MP.NodeJs}}</span><br>
+                                <i class="fa-brands fa-{{.MP.VueJs}} mb-3" style="width: 25px;"></i>
+                                <span class="text-capitalize">{{.MP.VueJs}}</span><br>
+                            </div>
+                            <div>
+                                <i class="fa-brands fa-{{.MP.ReactJs}} mb-3" style="width: 25px;"></i>
+                                <span class="text-capitalize">{{.MP.ReactJs}}</span><br>
+                                <i class="fa-brands fa-{{.MP.TypeScript}}" style="width: 25px;"></i>
+                                <span class="text-capitalize">{{.MP.TypeScript}}</span><br>
+                            </div>
                             
-                        </div>
-
-                        <div class="bawah">
-                            <i class="fa-brands fa-node-js"></i>
-                            <span>Node JS</span>
-
-                            <i class="fa-regular fa-circle-xmark"></i>
-                            <span>Socket IO</span>
                         </div>
                     </div>
                 </div>

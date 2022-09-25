@@ -75,9 +75,13 @@ func AddMyProject(w http.ResponseWriter, r *http.Request) {
 type MP struct {
 	Title       string
 	Description string
-	startDate   string
-	endDate     string
+	StartDate   string
+	EndDate     string
 	Duration    string
+	NodeJs      string
+	ReactJs     string
+	VueJs       string
+	TypeScript  string
 }
 
 var dataMP = []MP{}
@@ -93,10 +97,16 @@ func AddMP(w http.ResponseWriter, r *http.Request) {
 	var description = r.PostForm.Get("description")
 	var startDate = r.PostForm.Get("startDate")
 	var endDate = r.PostForm.Get("endDate")
+	var node = r.PostForm.Get("node")
+	var vuejs = r.PostForm.Get("vuejs")
+	var react = r.PostForm.Get("react")
+	var js = r.PostForm.Get("js")
 
 	layout := "2006-01-02"
 	start_date, _ := time.Parse(layout, startDate)
 	end_date, _ := time.Parse(layout, endDate)
+	var startDateC = start_date.Format("02 January 2006")
+	var endDateC = end_date.Format("02 January 2006")
 
 	hours := end_date.Sub(start_date).Hours()
 	days := hours / 24
@@ -109,10 +119,14 @@ func AddMP(w http.ResponseWriter, r *http.Request) {
 
 	var newMP = MP{
 		Title:       title,
-		startDate:   startDate,
-		endDate:     endDate,
+		StartDate:   startDateC,
+		EndDate:     endDateC,
 		Duration:    duration,
 		Description: description,
+		NodeJs:      node,
+		ReactJs:     react,
+		VueJs:       vuejs,
+		TypeScript:  js,
 	}
 
 	dataMP = append(dataMP, newMP)
@@ -140,9 +154,14 @@ func MyProjectDetail(w http.ResponseWriter, r *http.Request) {
 		if i == index {
 			MPDetail = MP{
 				Title:       data.Title,
-				startDate:   data.startDate,
-				endDate:     data.endDate,
 				Description: data.Description,
+				StartDate:   data.StartDate,
+				EndDate:     data.EndDate,
+				NodeJs:      data.NodeJs,
+				ReactJs:     data.ReactJs,
+				VueJs:       data.VueJs,
+				TypeScript:  data.TypeScript,
+				Duration:    data.Duration,
 			}
 		}
 	}
@@ -162,22 +181,3 @@ func deleteMP(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
-
-// func editMP(w http.ResponseWriter, r *http.Request)  {
-// 	index, _ := strconv.Atoi(mux.Vars(r)["index"])
-
-// }
-
-// func duration(w http.ResponseWriter, r *http.Request)  {
-// 	t1 := time.Date(startDate)
-// 	t2 := startDate
-
-// 	hs := t1.Sub(t2).Hours()
-
-// 	hs, mf := math.Modf(hs)
-// 	ms := mf * 60
-
-// 	ms, sf := math.Modf(ms)
-// 	ss := sf * 60
-
-// }
