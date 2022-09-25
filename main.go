@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"text/template"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -76,6 +77,7 @@ type MP struct {
 	Description string
 	startDate   string
 	endDate     string
+	Duration    string
 }
 
 var dataMP = []MP{}
@@ -92,10 +94,24 @@ func AddMP(w http.ResponseWriter, r *http.Request) {
 	var startDate = r.PostForm.Get("startDate")
 	var endDate = r.PostForm.Get("endDate")
 
+	layout := "2006-01-02"
+	start_date, _ := time.Parse(layout, startDate)
+	end_date, _ := time.Parse(layout, endDate)
+
+	hours := end_date.Sub(start_date).Hours()
+	days := hours / 24
+
+	var duration string
+
+	if days > 0 {
+		duration = strconv.FormatFloat(days, 'f', 0, 64) + " days"
+	}
+
 	var newMP = MP{
 		Title:       title,
 		startDate:   startDate,
 		endDate:     endDate,
+		Duration:    duration,
 		Description: description,
 	}
 
